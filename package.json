@@ -10,14 +10,16 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:sandarrow.helloWorld"
+    "onCommand:sandarrow"
   ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "sandarrow.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "sandarrow",
+        "title": "move to >👍<"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

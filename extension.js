@@ -16,28 +16,31 @@ function activate(context) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(
-    "sandarrow.helloWorld",
-    function () {
-      // The code you place here will be executed every time your command is executed
+  let disposable = vscode.commands.registerCommand("sandarrow", function () {
+    // The code you place here will be executed every time your command is executed
 
-      const editor = vscode.window.activeTextEditor;
-      if (!editor) {
-        vscode.window.showWarningMessage("No active text editor found!");
-        return;
-      }
-      const selection = editor.selection;
-      const position = new vscode.Position(1, 1).translate(1, 0);
-      console.log(position);
-      const text = editor.document.getText(selection);
-      console.log(text);
-      editor.edit((edit) => {
-        console.log(edit);
-      });
-      // Display a message box to the user
-      vscode.window.showInformationMessage("Hello World from sandarrow!");
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      vscode.window.showWarningMessage("No active text editor found!");
+      return;
     }
-  );
+    const selection = editor.selection;
+    const selectionRange = new vscode.SelectionRange(selection);
+    const startP = selectionRange.range.start.translate(0, -1);
+    const endP = selectionRange.range.end.translate(0, 1);
+    const cursorPosition = new vscode.Range(startP, endP);
+    const text = editor.document.getText(cursorPosition);
+
+    if (/<[^<>]*>/g.test(text)) {
+      vscode.commands.executeCommand("cursorMove", { to: "right" });
+      vscode.commands.executeCommand("cursorMove", { to: "right" });
+    } else if (/\/[^<>]*>/g.test(text)) {
+      vscode.commands.executeCommand("cursorMove", { to: "right" });
+      vscode.commands.executeCommand("cursorMove", { to: "right" });
+      vscode.commands.executeCommand("cursorMove", { to: "right" });
+    }
+    // Display a message box to the user
+  });
 
   context.subscriptions.push(disposable);
 }
