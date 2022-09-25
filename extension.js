@@ -35,9 +35,9 @@ function activate(context) {
       vscode.commands.executeCommand("cursorMove", { to: "right" });
       vscode.commands.executeCommand("cursorMove", { to: "right" });
     } else if (/\/[^<>]*>/g.test(text)) {
-      vscode.commands.executeCommand("cursorMove", { to: "right" });
-      vscode.commands.executeCommand("cursorMove", { to: "right" });
-      vscode.commands.executeCommand("cursorMove", { to: "right" });
+      vscode.commands.executeCommand("cursorMove", { to: "left" });
+      vscode.commands.executeCommand("cursorMove", { to: "left" });
+      vscode.commands.executeCommand("cursorMove", { to: "left" });
     }
     // Display a message box to the user
   });

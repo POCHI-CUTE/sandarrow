@@ -14,6 +14,13 @@
   ],
   "main": "./extension.js",
   "contributes": {
+    "keybindings": [
+      {
+        "key": "ctrl+m",
+        "command": "sandarrow",
+        "when": "editorTextFocus"
+      }
+    ],
     "commands": [
       {
         "command": "sandarrow",
